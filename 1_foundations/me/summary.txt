@@ -1,2 +1,22 @@
-My name is Ed Donner. I'm an entrepreneur, software engineer and data scientist. I'm originally from London, England, but I moved to NYC in 2000.
-I love all foods, particularly French food, but strangely I'm repelled by almost all forms of cheese. I'm not allergic, I just hate the taste! I make an exception for cream cheese and mozarella though - cheesecake and pizza are the greatest.
+# About Maher Fayad
+
+Maher Fayad is an experienced UI/UX Designer specializing in crafting intuitive graphical user interfaces and enriching user experiences. His journey in design spans volunteering with esteemed organizations to holding significant professional roles.
+
+## Who is He?
+- **Volunteer Experience:** United Nations, TEDx, Enactus, ASME, and Mansoura Motorsport.
+- **Career Roles:** Al Rajhi Bank, Contact Financial Holding, AZMX. Includes past engagements like GameIT (part-time), an internship at Algoriza, and a flourishing freelance career on Upwork.
+- **Client Roster:** Includes illustrious clients like Supersight, Theradome, the Mit Olin Foundation, Konica Minolta, Solidity Studios, Brackets, IterationX, Phonic, and many more.
+
+## Core Expertise
+- **UI Design:** Crafting delightful, intuitive interfaces that convert and boost business while making interactions fun.
+- **UX Research:** Diving deep into the minds of users through research to understand their wants, needs, and desires.
+- **Analytics:** Using analytics tools to unearth deep insights, providing a competitive edge through data.
+- **Heuristic Evaluation:** Scrutinizing every pixel, button, and interaction to ensure the digital product adheres to the golden rules of usability.
+
+## The Design Process
+1. **Research & Discovery:** Deep dive through conversations, surveys, and usability tests to grasp user challenges and business objectives. Analyzing competition and market landscape.
+2. **Wireflow & Ideation:** Brainstorming solutions followed by low-fidelity sketches and wireframes to spark initial design flow.
+3. **Refinement & Prototyping:** Iterating with input from teams/users, followed by high-fidelity mockups. Building prototypes to test and validate ideas with real users.
+4. **Design Systems:** Developing comprehensive design systems to ensure visual consistency and facilitate seamless team collaboration.
+5. **Testing & Iteration:** Rigorous usability testing, swift addressing of recurring issues, and iterative enhancement of designs.
+6. **Development & Post-Launch:** Bridging the gap between design and technology by working closely with development teams, followed by continual improvement monitoring post-launch.
