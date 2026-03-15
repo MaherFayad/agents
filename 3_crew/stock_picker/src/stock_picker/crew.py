@@ -1,3 +1,4 @@
+import os
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool
@@ -101,9 +102,10 @@ class StockPicker():
             short_term_memory = ShortTermMemory(
                 storage = RAGStorage(
                         embedder_config={
-                            "provider": "openai",
+                            "provider": "google",
                             "config": {
-                                "model": 'text-embedding-3-small'
+                                "model": 'gemini-embedding-exp-03-07',
+                                "api_key": os.getenv("GOOGLE_API_KEY"),
                             }
                         },
                         type="short_term",
@@ -113,9 +115,10 @@ class StockPicker():
             entity_memory = EntityMemory(
                 storage=RAGStorage(
                     embedder_config={
-                        "provider": "openai",
+                        "provider": "google",
                         "config": {
-                            "model": 'text-embedding-3-small'
+                            "model": 'gemini-embedding-exp-03-07',
+                            "api_key": os.getenv("GOOGLE_API_KEY"),
                         }
                     },
                     type="short_term",
