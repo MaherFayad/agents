@@ -1,4 +1,5 @@
 import os
+import httpx
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool
@@ -8,6 +9,30 @@ from .tools.push_tool import PushNotificationTool
 from crewai.memory import LongTermMemory, ShortTermMemory, EntityMemory
 from crewai.memory.storage.rag_storage import RAGStorage
 from crewai.memory.storage.ltm_sqlite_storage import LTMSQLiteStorage
+from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
+
+
+class GeminiEmbeddingFunction(EmbeddingFunction[Documents]):
+    """Custom embedding function that calls the Gemini REST API directly,
+    bypassing the deprecated google-generativeai SDK."""
+
+    def __init__(self, api_key: str, model_name: str = "gemini-embedding-2-preview"):
+        self._api_key = api_key
+        self._model_name = model_name
+        self._url = (
+            f"https://generativelanguage.googleapis.com/v1beta/models/"
+            f"{model_name}:embedContent?key={api_key}"
+        )
+
+    def __call__(self, input: Documents) -> Embeddings:
+        embeddings = []
+        for text in input:
+            data = {"content": {"parts": [{"text": text}]}}
+            resp = httpx.post(self._url, json=data, timeout=30)
+            if resp.status_code != 200:
+                raise ValueError(f"Gemini embedding API error {resp.status_code}: {resp.text[:200]}")
+            embeddings.append(resp.json()["embedding"]["values"])
+        return embeddings
 
 class TrendingCompany(BaseModel):
     """ A company that is in the news and attracting attention """
@@ -102,10 +127,12 @@ class StockPicker():
             short_term_memory = ShortTermMemory(
                 storage = RAGStorage(
                         embedder_config={
-                            "provider": "google",
+                            "provider": "custom",
                             "config": {
-                                "model": 'gemini-embedding-exp-03-07',
-                                "api_key": os.getenv("GOOGLE_API_KEY"),
+                                "embedder": GeminiEmbeddingFunction(
+                                    api_key=os.getenv("GOOGLE_API_KEY"),
+                                    model_name="gemini-embedding-2-preview",
+                                ),
                             }
                         },
                         type="short_term",
@@ -115,10 +142,12 @@ class StockPicker():
             entity_memory = EntityMemory(
                 storage=RAGStorage(
                     embedder_config={
-                        "provider": "google",
+                        "provider": "custom",
                         "config": {
-                            "model": 'gemini-embedding-exp-03-07',
-                            "api_key": os.getenv("GOOGLE_API_KEY"),
+                            "embedder": GeminiEmbeddingFunction(
+                                api_key=os.getenv("GOOGLE_API_KEY"),
+                                model_name="gemini-embedding-2-preview",
+                            ),
                         }
                     },
                     type="short_term",
